@@ -32,6 +32,11 @@ class ProductList extends BaseComponent {
              </ul>
          `;
     }
+
+    set products(products) {
+        this._products = products;
+        this._render();
+    }
 }
 
 export default ProductList;

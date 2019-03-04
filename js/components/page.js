@@ -16,15 +16,15 @@ class Page extends BaseComponent {
         this._element.innerHTML = `
             <div class="container-fluid">
                 <div class="row">
-                <div class="col-md-2">
-                    <section>
-                        <div data-component="search"></div>
-                        <p data-component="sort"></p>
-                    </section>
-                    <section data-component="shopping-cart"></section>
-                 </div>
-            
-                 <div class="col-md-10" data-component="product-list"></div>
+                    <div class="col-md-2">
+                        <section>
+                            <div data-component="search"></div>
+                            <p data-component="sort"></p>
+                        </section>
+                        <section data-component="shopping-cart"></section>
+                     </div>
+                
+                     <div class="col-md-10" data-component="product-list"></div>
                 </div>
             </div>
         `;
@@ -33,6 +33,7 @@ class Page extends BaseComponent {
     _initComponents() {
         this._search = new Search({
             element: this._element.querySelector('[data-component="search"]'),
+            parent: this,
         });
 
         this._sort = new Sort({
@@ -47,6 +48,10 @@ class Page extends BaseComponent {
             element: this._element.querySelector('[data-component="product-list"]'),
             products: PhoneService.getAll(),
         });
+    }
+
+    searchUpdated(query) {
+        this._productList.products = PhoneService.getFiltered(query);
     }
 }
 
