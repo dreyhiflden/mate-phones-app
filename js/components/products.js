@@ -35,6 +35,7 @@ class Products extends BaseComponent {
 
         this._sort = new Sort({
             element: this._element.querySelector('[data-component="sort"]'),
+            parent: this,
         });
 
         this._shoppingCart = new ShoppingCart({
@@ -51,6 +52,10 @@ class Products extends BaseComponent {
 
     searchUpdated(query) {
         this._productList.products = PhoneService.getFiltered(query);
+    }
+
+    sortUpdated(value) {
+        this._productList.products = PhoneService.getSorted(value);
     }
 
     phoneSelected(phoneId) {
