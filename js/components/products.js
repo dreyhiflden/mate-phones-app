@@ -40,6 +40,7 @@ class Products extends BaseComponent {
 
         this._shoppingCart = new ShoppingCart({
             element: this._element.querySelector('[data-component="shopping-cart"]'),
+            parent: this,
         });
 
         this._productList = new ProductList({
