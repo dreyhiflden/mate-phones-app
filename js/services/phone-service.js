@@ -13,7 +13,7 @@ class PhoneService {
 
     static getSorted(value) {
         if (value === 'age') {
-            return phones.sort((a, b) => a.age - b.age);
+            return phones.slice().sort((a, b) => a.age - b.age);
         }
 
         if (value === 'name') {
