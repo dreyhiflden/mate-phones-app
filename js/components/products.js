@@ -63,6 +63,10 @@ class Products extends BaseComponent {
         this._parent.phoneSelected(phoneId);
     }
 
+    clearedSearch() {
+        this._search._element.querySelector('input').value = ''
+    }
+
 }
 
 export default Products;
