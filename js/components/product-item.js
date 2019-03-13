@@ -1,10 +1,12 @@
 import BaseComponent from './base-component.js';
+import Gallery from './gallery.js';
 
 class ProductItem extends BaseComponent {
     set item(phone) {
         this._item = phone;
         this._render();
         this._addListeners();
+        this._initComponents();
     }
 
     _render() {
@@ -14,8 +16,6 @@ class ProductItem extends BaseComponent {
 
         this._element.innerHTML = `
         <div>
-    <img class="phone" src="img/phones/${this._item.id}.0.jpg">
-
     <button data-action="back">Back</button>
     <button data-action="add-to-cart">Add to cart</button>
 
@@ -24,11 +24,7 @@ class ProductItem extends BaseComponent {
 
     <p>${this._item.description}</p>
 
-    <ul class="phone-thumbs">
-      ${this._item.images
-          .map((image, item) => `<li><img src="img/phones/${this._item.id}.${item}.jpg"></li>`)
-          .join('')}
-    </ul>
+    <div data-component="gallery"></div>
 
     <ul class="specs">
       <li>
@@ -148,6 +144,13 @@ class ProductItem extends BaseComponent {
 
             }
           );
+    }
+
+    _initComponents() {
+        this._gallery = new Gallery({
+            element: this._element.querySelector('[data-component="gallery"]'),
+            item: this._item,
+        });
     }
 
 }
