@@ -3,8 +3,6 @@ import BaseComponent from "./base-component.js";
 class Sort extends BaseComponent {
   constructor(params) {
     super(params);
-
-    this._parent = params.parent;
   }
 
   _render() {
@@ -24,8 +22,9 @@ class Sort extends BaseComponent {
   addListeners() {
     this._element.querySelector('select')
       .addEventListener('change', (event) => {
-          this._parent.clearedSearch();
-          this._parent.sortUpdated(event.currentTarget.value);
+          // this._parent.clearedSearch();
+          this._eventEmitter.emit('clearedSearch');
+          this._eventEmitter.emit('sortUpdated', event.currentTarget.value);
         }
       );
   }
