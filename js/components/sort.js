@@ -22,7 +22,6 @@ class Sort extends BaseComponent {
   addListeners() {
     this._element.querySelector('select')
       .addEventListener('change', (event) => {
-          // this._parent.clearedSearch();
           this._eventEmitter.emit('clearedSearch');
           this._eventEmitter.emit('sortUpdated', event.currentTarget.value);
         }
