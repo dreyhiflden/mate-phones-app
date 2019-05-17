@@ -49,13 +49,7 @@ img.phone {
   padding: 2em;
   height: 400px;
   width: 400px;
-  display: none;
 }
-
-img.phone:first-child {
-  display: block;
-}
-
 
 ul.phone-thumbs {
   margin: 0;
